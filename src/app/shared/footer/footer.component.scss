@@ -1,0 +1,8 @@
+.footer {
+  border: 1px solid #000;
+  border-top-width: 3px;
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+  }
+}

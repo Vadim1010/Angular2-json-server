@@ -1,0 +1,10 @@
+.star {
+  cursor: pointer;
+  font-size: 30px;
+  &:hover {
+    color: green;
+  }
+  &--active {
+    color: red;
+  }
+}

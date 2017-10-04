@@ -1,0 +1,16 @@
+<div class="movie" *ngFor="let item of items">
+  <div class="movie__rating">
+    <p>{{item.title}}</p>
+    <p>Likes: <span>{{item.likes}}</span></p>
+    <p>
+    </p>
+  </div>
+  <div class="movie__about">
+    <img [src]="item.posterUrl" [alt]="item.title">
+    <p><span>Director: </span>{{item.director}}</p>
+    <p><span>Actors: </span><span *ngFor="let name of item.actors"> {{name}} </span></p>
+    <p><span>Genres: </span><span *ngFor="let name of item.genres"> {{name}}</span></p>
+    <p><span>Description: </span>{{item.description}}</p>
+
+  </div>
+</div>
