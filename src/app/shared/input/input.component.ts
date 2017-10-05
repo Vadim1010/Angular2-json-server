@@ -1,13 +1,13 @@
 import {
   Component,
-  Input, ViewEncapsulation
+  Input, Output, ViewEncapsulation
 } from '@angular/core';
 
 @Component({
   selector: 'mv-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Native
 })
 export class InputComponent {
   @Input() className: string = 'btn';
@@ -15,4 +15,6 @@ export class InputComponent {
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() placeholder: string = '';
+
+
 }

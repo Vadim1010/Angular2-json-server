@@ -5,7 +5,8 @@ import {HeaderComponent} from './header.component';
   declarations: [
     HeaderComponent
   ],
-  exports: [HeaderComponent]
+  exports: [HeaderComponent],
+
 })
 export class HeaderModule {
 }

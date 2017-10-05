@@ -1,0 +1,9 @@
+.likes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  &__title {
+    border-bottom: 1px solid #000;
+  }
+}

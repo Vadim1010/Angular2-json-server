@@ -2,30 +2,31 @@ import {
   Component,
   ViewEncapsulation,
   OnInit,
+  OnDestroy,
   Input
 } from '@angular/core';
 import {DataService} from '../../core';
 import {MovieModels} from '../movie.model'
 import {Router} from '@angular/router';
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'mv-movies',
   templateUrl: 'movies.component.html',
   styleUrls: ['movies.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Native
 })
-export class MoviesComponent implements OnInit {
+export class MoviesComponent implements OnInit, OnDestroy {
   @Input() items: MovieModels[];
-
+  private ngUnsubscribe: Subject<void> = new Subject<void>();
   public itemDescription;
   public numberStars: number[];
 
-  constructor(
-              private dataService: DataService,
+  constructor(private dataService: DataService,
               private router: Router) {
   }
 
-  public ngOnInit():void {
+  public ngOnInit(): void {
     this.numberStars = this.dataService.numberStars;
     this.dataService.getAll().subscribe(
       (result) => {
@@ -41,42 +42,11 @@ export class MoviesComponent implements OnInit {
       });
   }
 
-  public showMovie(id: number): void {
-    this.dataService.getById(id).subscribe(
-      (result) => {
-        this.itemDescription = result;
-      });
-  }
+  changeMovie(event) {
+    let data = event.movie;
+    data[event.value] = event.number;
 
-  public changeRating(value: number, id: number, check?: boolean): void {
-    if (check) {
-      this.itemDescription.stars = value;
-    }
-
-    this.items.forEach((item) => {
-      if (item.id === id) {
-        item.stars = value;
-        this.dataService.postData(item, item.id).subscribe();
-      }
-    }, this);
-  }
-
-  public changeLikes(id: number, check: boolean): void {
-    this.items.forEach((item) => {
-      if (item.id === id) {
-        item.likes += 1;
-        this.dataService.postData(item, item.id).subscribe();
-      }
-    },this);
-  }
-
-  public changeDisLikes(id: number): void {
-    this.items.forEach((item) => {
-      if (item.id === id) {
-        item.likes -= 1;
-        this.dataService.postData(item, item.id).subscribe();
-      }
-    }, this);
+    this.dataService.postData(data, data.id).subscribe();
   }
 
   public searchs(e): void {
@@ -88,7 +58,12 @@ export class MoviesComponent implements OnInit {
       });
   }
 
-  public detailsMovie (id: number){
-    this.router.navigate(['/movie/'+ id]);
+  public detailsMovie(id: number) {
+    this.router.navigate(['/movie/' + id]);
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

@@ -1,0 +1,17 @@
+<h3 class="item__title" (click)="clickHeader()">{{item?.title}}</h3>
+<div class="item__likes likes">
+  <mv-input [className]="'btn btn-like'" [value]="'🖒'" (click)="changeRating('likes', item.likes + 1)"></mv-input>
+  <mv-input [className]="'btn btn-like btn-like--dislikes'" [value]="'🖒'"
+            (click)="changeRating('likes', item.likes - 1)"></mv-input>
+  <p class="likes__title">Likes</p>
+  <p class="likes__number">{{item?.likes}}</p>
+</div>
+<a class="item__img">
+  <img [src]="item?.posterUrl" [alt]="item?.title">
+</a>
+<div class="item__rating">
+  <mv-star *ngFor="let number of numberStars"
+           [className]="(item?.stars >= number) ? 'star star--active': 'star'"
+           (click)="changeRating('stars', number)">
+  </mv-star>
+</div>

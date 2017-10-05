@@ -1,4 +1,4 @@
 export * from './features.module';
 export * from './movies';
-export * from './movieComponent';
-export  * from './noContent'
+export * from './movieDetail';
+export  * from './noContent';

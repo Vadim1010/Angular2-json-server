@@ -30,7 +30,7 @@ import {AppState, InternalStateType} from './app.service';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import {SharedModule, InputModule, StarModule} from './shared';
-import {FeaturesModule, MovieModule, MoviesModule, NoContentModule} from './features';
+import {FeaturesModule, MovieDetailModule, MoviesModule, NoContentModule} from './features';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -66,7 +66,7 @@ type StoreType = {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
     }),
-    MovieModule,
+    MovieDetailModule,
     MoviesModule,
     InputModule,
     StarModule,

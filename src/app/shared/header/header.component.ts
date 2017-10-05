@@ -7,7 +7,9 @@ import {
   selector: 'mv-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Native
 })
 export class HeaderComponent {
+  constructor() {
+  }
 }

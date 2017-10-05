@@ -2,6 +2,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {MoviesComponent} from './movies.component';
+import {ItemMovieModule} from './shared'
 import {InputModule, StarModule} from '../../shared';
 import {DataService} from '../../core';
 
@@ -10,7 +11,8 @@ import {DataService} from '../../core';
     BrowserModule,
     FormsModule,
     InputModule,
-    StarModule
+    StarModule,
+    ItemMovieModule
   ],
   declarations: [
     MoviesComponent,

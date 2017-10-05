@@ -1,0 +1,18 @@
+import {Subscription} from "rxjs";
+
+
+
+private x:Subscription;
+
+
+
+this.x = this.route.paramMap
+      .switchMap((params: ParamMap)=>this.dataService.getById(+params.get('id')))
+      .subscribe((movie)=> this.itemDescription = movie, (error)=>this.router.navigate(['/404']));
+
+
+
+
+ngOnDestroy() {
+    this.x.unsubscribe();
+  }

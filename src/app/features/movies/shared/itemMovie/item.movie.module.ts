@@ -1,21 +1,20 @@
 ﻿import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import {MovieComponent} from './movie.component';
-import {StarModule, InputModule} from '../../shared'
+import {ItemMovieComponent} from './item.movie.component';
+import {InputModule, StarModule} from '../../../../shared';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    StarModule,
-    InputModule
+    InputModule,
+    StarModule
   ],
   declarations: [
-    MovieComponent
+    ItemMovieComponent,
   ],
-  exports: [MovieComponent],
+  exports: [ItemMovieComponent]
 })
-
-export class MovieModule {
+export class ItemMovieModule {
 }

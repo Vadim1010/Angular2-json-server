@@ -7,7 +7,7 @@ import {
   selector: 'mv-error',
   templateUrl: 'no.content.component.html',
   styleUrls: ['no.content.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Native
 })
 export class NoContentComponent{
 }
