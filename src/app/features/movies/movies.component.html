@@ -9,8 +9,8 @@
   ></mv-input>
 </div>
 <div class="movies-items">
-  <div class="item" *ngFor="let item of items">
-    <h3 (click)="showMovie(item?.id)" class="item__title">{{item?.title}}</h3>
+  <div class="item" *ngFor="let item of items" (mouseover)="showMovie(item?.id)">
+    <h3  class="item__title" (click)="detailsMovie(item.id)" >{{item?.title}}</h3>
     <div class="item__likes likes">
       <mv-input [className]="'btn btn-like'" [value]="'🖒'" (click)="changeLikes(item?.id)"></mv-input>
       <mv-input [className]="'btn btn-like btn-like--dislikes'" [value]="'🖒'"
@@ -18,7 +18,7 @@
       <p class="likes__title">Likes</p>
       <p class="likes__number">{{item?.likes}}</p>
     </div>
-    <a class="item__img" href="#/{{item?.id}}">
+    <a  class="item__img">
       <img [src]="item?.posterUrl" [alt]="item?.title">
     </a>
     <div class="item__rating">

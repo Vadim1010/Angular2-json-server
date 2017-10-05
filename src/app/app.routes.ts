@@ -1,12 +1,12 @@
-import { Routes } from '@angular/router';
-import { HomeComponent } from './home';
-import { NoContentComponent } from './features';
+import {Routes} from '@angular/router';
+import {MoviesComponent, NoContentComponent, MovieComponent} from './features';
 
-import { DataResolver } from './app.resolver';
+
+import {DataResolver} from './app.resolver';
 
 export const ROUTES: Routes = [
-  { path: '',      component: HomeComponent },
-  { path: 'movies',  component: NoContentComponent },
-  // { path: 'about', component: AboutComponent },
-  { path: '**',    component: NoContentComponent }
+  {path: '', component: MoviesComponent},
+  {path: 'movies', component: MoviesComponent},
+  {path: 'movie/:id', component: MovieComponent},
+  {path: '**', component: NoContentComponent}
 ];

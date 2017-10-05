@@ -4,9 +4,9 @@ import {
   OnInit,
   Input
 } from '@angular/core';
-import {Http} from '@angular/http';
 import {DataService} from '../../core';
-import {MovieModels} from '../movies.models'
+import {MovieModels} from '../movie.model'
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'mv-movies',
@@ -16,10 +16,13 @@ import {MovieModels} from '../movies.models'
 })
 export class MoviesComponent implements OnInit {
   @Input() items: MovieModels[];
+
   public itemDescription;
   public numberStars: number[];
 
-  constructor(private http: Http, private dataService: DataService) {
+  constructor(
+              private dataService: DataService,
+              private router: Router) {
   }
 
   public ngOnInit():void {
@@ -39,10 +42,9 @@ export class MoviesComponent implements OnInit {
   }
 
   public showMovie(id: number): void {
-    window.scroll(0, 200);
     this.dataService.getById(id).subscribe(
       (result) => {
-        this.itemDescription = result[0];
+        this.itemDescription = result;
       });
   }
 
@@ -84,5 +86,9 @@ export class MoviesComponent implements OnInit {
       (result) => {
         this.items = result;
       });
+  }
+
+  public detailsMovie (id: number){
+    this.router.navigate(['/movie/'+ id]);
   }
 }

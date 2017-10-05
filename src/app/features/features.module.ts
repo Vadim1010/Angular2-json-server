@@ -1,17 +1,17 @@
 import {NgModule} from '@angular/core';
 import {MoviesModule} from './movies';
-import {DescriptionMovieModule} from './descriptionMovie';
+import {MovieModule} from './movieComponent';
 import {NoContentModule} from './noContent'
 
 @NgModule({
   imports: [
     MoviesModule,
-    DescriptionMovieModule,
+    MovieModule,
     NoContentModule
   ],
   exports: [
     MoviesModule,
-    DescriptionMovieModule,
+    MovieModule,
     NoContentModule
   ]
 })

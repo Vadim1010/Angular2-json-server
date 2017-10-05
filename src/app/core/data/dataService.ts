@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
-import {MovieModels} from '../../features/movies.models';
+import {MovieModels} from '../../features/movie.model';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
@@ -19,9 +19,10 @@ export class DataService {
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public getById(id: number): Observable<MovieModels[]> {
-    return this.http.get(this.moviesUrl + '?id=' + id)
-      .map((response) => response.json())
+  public getById(id: number): Observable<MovieModels> {
+    return this.http.get(this.moviesUrl + id)
+      .map((response) => {
+        return response.json()})
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 

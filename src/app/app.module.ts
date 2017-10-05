@@ -26,12 +26,11 @@ import {ROUTES} from './app.routes';
 import {AppComponent} from './app.component';
 import {APP_RESOLVER_PROVIDERS} from './app.resolver';
 import {AppState, InternalStateType} from './app.service';
-import {HomeComponent} from './home';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import {SharedModule, InputModule, StarModule} from './shared';
-import {FeaturesModule, DescriptionMovieModule, MoviesModule, NoContentModule} from './features';
+import {FeaturesModule, MovieModule, MoviesModule, NoContentModule} from './features';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -52,7 +51,6 @@ type StoreType = {
   bootstrap: [AppComponent],
   declarations: [
     AppComponent,
-    HomeComponent
   ],
   /**
    * Import Angular's modules.
@@ -68,7 +66,7 @@ type StoreType = {
       useHash: Boolean(history.pushState) === false,
       preloadingStrategy: PreloadAllModules
     }),
-    DescriptionMovieModule,
+    MovieModule,
     MoviesModule,
     InputModule,
     StarModule,
