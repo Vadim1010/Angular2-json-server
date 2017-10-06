@@ -1,6 +1,6 @@
 import {
   Component,
-  Input, Output, ViewEncapsulation
+  Input, Output, ViewEncapsulation, EventEmitter
 } from '@angular/core';
 
 @Component({
@@ -9,7 +9,14 @@ import {
   styleUrls: ['like.component.scss'],
   encapsulation: ViewEncapsulation.Native
 })
-export class LikeComponent {
+export class LikeComponent implements Input, Output {
+  @Input() likes: number;
+  @Output() clickLike: EventEmitter<any> = new EventEmitter();
 
+  constructor() {
+  }
 
+  changeRating(value: string, number: number): void {
+    this.clickLike.emit({value: value, number: number})
+  }
 }

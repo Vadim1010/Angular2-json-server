@@ -1,10 +1,18 @@
-.movie-details{
-  &__title{
+.movie-details {
+  &__title {
     text-align: center;
     font-size: 30px;
   }
-  &__img{
+  &__img {
     display: block;
     margin: 0 auto;
+  }
+  &__likes {
+    float: left;
+  }
+  &__stars {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
   }
 }

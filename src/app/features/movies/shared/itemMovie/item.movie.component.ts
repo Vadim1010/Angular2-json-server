@@ -17,6 +17,9 @@ export class ItemMovieComponent implements Input, Output {
   @Input() numberStars: number[];
   @Output() changeMovie: EventEmitter<any> = new EventEmitter();
   @Output() changeDetail: EventEmitter<any> = new EventEmitter();
+  @Output() changeRatingMovie: EventEmitter<any> = new EventEmitter();
+  @Output() changeLikesMovie: EventEmitter<any> = new EventEmitter();
+
   constructor() {
   }
 
@@ -24,7 +27,14 @@ export class ItemMovieComponent implements Input, Output {
     this.changeMovie.emit({movie: this.item, value: value, number: number});
   }
 
+  changeLikes (event) {
+    event.movie = this.item;
+    this.changeMovie.emit(event);
+  }
+
   clickHeader(){
     this.changeDetail.emit(this.item.id);
   }
+
+
 }

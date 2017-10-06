@@ -18,7 +18,7 @@ import {MovieModels} from '../movie.model'
 export class MovieDetailComponent implements OnInit, OnDestroy {
   private numberStars: number[];
   private itemDescription: MovieModels;
-  private subscriptions: Subscription;
+  private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -26,9 +26,9 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.subscriptions = this.route.paramMap
+    this.subscriptions.push(this.route.paramMap
       .switchMap((params: ParamMap)=>this.dataService.getById(+params.get('id')))
-      .subscribe((movie)=> this.itemDescription = movie, (error)=>this.router.navigate(['/404']));
+      .subscribe((movie)=> this.itemDescription = movie, (error)=>this.router.navigate(['/404'])));
 
     this.numberStars = this.dataService.numberStars;
     document.documentElement.scrollTop = 0;
@@ -42,10 +42,20 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     let data = this.itemDescription;
     data[value] = number;
 
-    this.dataService.postData(data, data.id).subscribe();
+    this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
+  }
+
+  changeLikes(event){
+    let data = this.itemDescription;
+    data[event.value] = event.number;
+    this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
   ngOnDestroy() {
-    this.subscriptions.unsubscribe();
+    this.subscriptions.forEach((item)=>{
+      if(item){
+        item.unsubscribe()
+      }
+    });
   }
 }

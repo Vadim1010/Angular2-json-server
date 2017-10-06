@@ -5,7 +5,10 @@
   >
   </mv-input>
   <h3 class="movie-details__title">{{itemDescription?.title}}</h3>
-  <p class="movie-details__likes">Likes: <span>{{itemDescription?.likes}}</span></p>
+  <mv-like [likes]="itemDescription?.likes"
+           (clickLike)="changeLikes($event)"
+           class="movie-details__likes">
+  </mv-like>
   <div class="movie-details__stars">
     <mv-star *ngFor="let number of numberStars"
              [className]="(itemDescription?.stars >= number) ? 'star star--active': 'star'"

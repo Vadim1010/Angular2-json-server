@@ -1,5 +1,5 @@
-<mv-input [className]="'btn btn-like'" [value]="'🖒'" (click)="changeRating('likes', item.likes + 1)"></mv-input>
+<mv-input [className]="'btn btn-like'" [value]="'🖒'" (click)="changeRating('likes', likes + 1)"></mv-input>
 <mv-input [className]="'btn btn-like btn-like--dislikes'" [value]="'🖒'"
-          (click)="changeRating('likes', item.likes - 1)"></mv-input>
+          (click)="changeRating('likes', likes - 1)"></mv-input>
 <p class="likes__title">Likes</p>
-<p class="likes__number">{{item?.likes}}</p>
+<p class="likes__number">{{likes}}</p>

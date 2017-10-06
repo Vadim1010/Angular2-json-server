@@ -2,14 +2,15 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {ItemMovieComponent} from './item.movie.component';
-import {InputModule, StarModule} from '../../../../shared';
+import {InputModule, StarModule, LikeModule} from '../../../../shared';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     InputModule,
-    StarModule
+    StarModule,
+    LikeModule
   ],
   declarations: [
     ItemMovieComponent,

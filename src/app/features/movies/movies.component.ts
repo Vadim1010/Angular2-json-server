@@ -45,6 +45,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   changeMovie(event) {
     let data = event.movie;
+
     data[event.value] = event.number;
 
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
