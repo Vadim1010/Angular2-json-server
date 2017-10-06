@@ -1,6 +1,6 @@
 import {
   Component,
-  Input, Output, ViewEncapsulation
+  Input, Output, ViewEncapsulation, EventEmitter
 } from '@angular/core';
 
 @Component({
@@ -15,6 +15,12 @@ export class InputComponent {
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() placeholder: string = '';
+  @Output() changeInput: EventEmitter<any> = new EventEmitter();
 
+  constructor() {
+  }
 
+  change(event){
+    this.changeInput.emit(event.target.value);
+  }
 }

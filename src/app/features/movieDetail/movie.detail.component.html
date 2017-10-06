@@ -3,13 +3,13 @@
     [value]="'Home'"
     (click)="goHome()"
   >
-
   </mv-input>
   <h3 class="movie-details__title">{{itemDescription?.title}}</h3>
   <p class="movie-details__likes">Likes: <span>{{itemDescription?.likes}}</span></p>
   <div class="movie-details__stars">
     <mv-star *ngFor="let number of numberStars"
-             [className]="(itemDescription?.stars >= number) ? 'star star--active': 'star'">1
+             [className]="(itemDescription?.stars >= number) ? 'star star--active': 'star'"
+             (click)="changeRating('stars', number)">
     </mv-star>
   </div>
   <img class="movie-details__img" [src]="itemDescription?.posterUrl" [alt]="itemDescription?.title">

@@ -3,7 +3,7 @@ import {FooterModule} from './footer';
 import {HeaderModule} from './header';
 import {InputModule} from './input';
 import {StarModule} from './star';
-// import {LikeModule} from './like'
+import {LikeModule} from './like';
 
 @NgModule({
   imports: [
@@ -11,14 +11,14 @@ import {StarModule} from './star';
     HeaderModule,
     InputModule,
     StarModule,
-    // LikeModule
+    LikeModule
   ],
   exports: [
     FooterModule,
     HeaderModule,
     InputModule,
     StarModule,
-    // LikeModule
+    LikeModule
   ]
 })
 export class SharedModule {

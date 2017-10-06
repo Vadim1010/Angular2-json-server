@@ -1,11 +1,13 @@
 <div class="movies-nav">
+  <a routerLink="/dashboard">Dashboard</a>
   <h2 class="filters__title">Sort movies</h2>
   <mv-input (click)="sorting('likes')" [value]="'by likes'"></mv-input>
   <mv-input (click)="sorting('stars')" [value]="'by rating'"></mv-input>
-  <mv-input [value]=[(text)] [type]="text" [placeholder]="'Searchs by name'"
+  <mv-input [value]=[(text)] [type]="text"
+            [placeholder]="'Searchs by name'"
             [className]="'btn btn--filter'"
             [name]="'title'"
-            (input)="searchs($event)"
+            (changeInput)="searchs($event)"
   ></mv-input>
 </div>
 <div class="movies-items">

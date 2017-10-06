@@ -8,7 +8,7 @@ import {
 import {DataService} from '../../core';
 import {MovieModels} from '../movie.model'
 import {Router} from '@angular/router';
-import {Subject} from "rxjs";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'mv-movies',
@@ -18,52 +18,54 @@ import {Subject} from "rxjs";
 })
 export class MoviesComponent implements OnInit, OnDestroy {
   @Input() items: MovieModels[];
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
-  public itemDescription;
-  public numberStars: number[];
+  private subscriptions: Subscription[] = [];
+
+  numberStars: number[];
 
   constructor(private dataService: DataService,
               private router: Router) {
   }
 
-  public ngOnInit(): void {
+  ngOnInit(): void {
     this.numberStars = this.dataService.numberStars;
-    this.dataService.getAll().subscribe(
+
+    this.subscriptions.push(this.dataService.getAll().subscribe(
       (result) => {
         this.items = result;
-        this.itemDescription = result[0];
-      });
+      }));
   }
 
-  public sorting(value: string): void {
-    this.dataService.sorting(value).subscribe(
+  sorting(value: string): void {
+    this.subscriptions.push(this.dataService.sorting(value).subscribe(
       (result) => {
         this.items = result;
-      });
+      }));
+
   }
 
   changeMovie(event) {
     let data = event.movie;
     data[event.value] = event.number;
 
-    this.dataService.postData(data, data.id).subscribe();
+    this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  public searchs(e): void {
-    const value: string = e.target.value;
-
-    this.dataService.filter(value).subscribe(
+  searchs(value: string): void {
+    this.subscriptions.push(this.dataService.filter(value).subscribe(
       (result) => {
         this.items = result;
-      });
+      }));
   }
 
-  public detailsMovie(id: number) {
+  detailsMovie(id: number) {
     this.router.navigate(['/movie/' + id]);
   }
 
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.subscriptions.forEach((item)=>{
+      if(item){
+        item.unsubscribe();
+      }
+    });
   }
 }

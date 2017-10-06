@@ -4,7 +4,6 @@ import {FormsModule} from '@angular/forms';
 import {MoviesComponent} from './movies.component';
 import {ItemMovieModule} from './shared'
 import {InputModule, StarModule} from '../../shared';
-import {DataService} from '../../core';
 
 @NgModule({
   imports: [
@@ -12,13 +11,12 @@ import {DataService} from '../../core';
     FormsModule,
     InputModule,
     StarModule,
-    ItemMovieModule
+    ItemMovieModule,
   ],
   declarations: [
     MoviesComponent,
   ],
   exports: [MoviesComponent],
-  providers: [DataService]
 })
 export class MoviesModule {
 }

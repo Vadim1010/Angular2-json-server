@@ -4,7 +4,7 @@
       "id": 1,
       "title": "The Shawshank Redemption",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SY500_CR0,0,336,500_AL_.jpg",
-      "stars": 2,
+      "stars": 5,
       "likes": 28,
       "genres": [
         "Crime",
@@ -24,7 +24,7 @@
       "title": "The Godfather",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,352,500_AL_.jpg",
       "stars": 4,
-      "likes": 17,
+      "likes": 18,
       "genres": [
         "Crime",
         "Drama"
@@ -41,7 +41,7 @@
       "id": 3,
       "title": "The Godfather: Part II",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjZiNzIxNTQtNDc5Zi00YWY1LThkMTctMDgzYjY4YjI1YmQyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,351,500_AL_.jpg",
-      "stars": 1,
+      "stars": 3,
       "likes": 15,
       "genres": [
         "Crime",
@@ -130,7 +130,7 @@
       "id": 8,
       "title": "The Lord of the Rings: The Return of the King",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWY1ZWQ5YjMtMDE0MS00NWIzLWE1M2YtODYzYTk2OTNlYWZmXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SY500_SX334_AL_.jpg",
-      "stars": 2,
+      "stars": 1,
       "likes": 13,
       "genres": [
         "Adventure",
@@ -149,7 +149,7 @@
       "id": 9,
       "title": "Il buono, il brutto, il cattivo",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BOTQ5NDI3MTI4MF5BMl5BanBnXkFtZTgwNDQ4ODE5MDE@._V1_SY500_CR0,0,328,500_AL_.jpg",
-      "stars": 3,
+      "stars": 2,
       "likes": 16,
       "genres": [
         "Adventure"

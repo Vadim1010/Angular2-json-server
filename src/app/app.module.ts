@@ -31,6 +31,7 @@ import '../styles/styles.scss';
 import '../styles/headings.css';
 import {SharedModule, InputModule, StarModule} from './shared';
 import {FeaturesModule, MovieDetailModule, MoviesModule, NoContentModule} from './features';
+import {DataService} from './core'
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -77,7 +78,8 @@ type StoreType = {
    */
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    DataService
   ]
 })
 export class AppModule {

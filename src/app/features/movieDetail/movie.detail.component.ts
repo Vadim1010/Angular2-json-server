@@ -5,10 +5,9 @@ import {
   OnDestroy, OnInit
 } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
-import {Subject} from 'rxjs/Subject';
+import { Subscription } from 'rxjs/Subscription';
 import {DataService} from '../../core'
 import {MovieModels} from '../movie.model'
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'mv-movie-detail',
@@ -19,7 +18,7 @@ import {Subscription} from "rxjs";
 export class MovieDetailComponent implements OnInit, OnDestroy {
   private numberStars: number[];
   private itemDescription: MovieModels;
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+  private subscriptions: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,21 +26,26 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.route.paramMap
+    this.subscriptions = this.route.paramMap
       .switchMap((params: ParamMap)=>this.dataService.getById(+params.get('id')))
       .subscribe((movie)=> this.itemDescription = movie, (error)=>this.router.navigate(['/404']));
 
     this.numberStars = this.dataService.numberStars;
-
-    console.log(document.getElementById('showScroll'))
+    document.documentElement.scrollTop = 0;
   }
 
   goHome() {
     this.router.navigate(['/']);
   }
 
+  changeRating(value: string, number: number): void {
+    let data = this.itemDescription;
+    data[value] = number;
+
+    this.dataService.postData(data, data.id).subscribe();
+  }
+
   ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
+    this.subscriptions.unsubscribe();
   }
 }
