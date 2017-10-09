@@ -1,6 +1,6 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import {
   NgModule,
   ApplicationRef
@@ -15,23 +15,23 @@ import {
   PreloadAllModules
 } from '@angular/router';
 
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*
  * Platform and Environment providers/directives/pipes
  */
-import {ENV_PROVIDERS} from './environment';
-import {ROUTES} from './app.routes';
+import { ENV_PROVIDERS } from './environment';
+import { ROUTES } from './app.routes';
 // App is our top level component
-import {AppComponent} from './app.component';
-import {APP_RESOLVER_PROVIDERS} from './app.resolver';
-import {AppState, InternalStateType} from './app.service';
+import { AppComponent } from './app.component';
+import { APP_RESOLVER_PROVIDERS } from './app.resolver';
+import { AppState, InternalStateType } from './app.service';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
-import {SharedModule, InputModule, StarModule} from './shared';
-import {FeaturesModule, MovieDetailModule, MoviesModule, NoContentModule} from './features';
-import {DataService} from './core'
+import { SharedModule, InputModule, StarModule } from './shared';
+import { FeaturesModule, MovieDetailModule, MoviesModule, NoContentModule } from './features';
+import { DataService } from './core';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -84,11 +84,11 @@ type StoreType = {
 })
 export class AppModule {
 
-  constructor(public appRef: ApplicationRef,
-              public appState: AppState) {
+  constructor (public appRef: ApplicationRef,
+               public appState: AppState) {
   }
 
-  public hmrOnInit(store: StoreType) {
+  public hmrOnInit (store: StoreType) {
     if (!store || !store.state) {
       return;
     }
@@ -110,7 +110,7 @@ export class AppModule {
     delete store.restoreInputValues;
   }
 
-  public hmrOnDestroy(store: StoreType) {
+  public hmrOnDestroy (store: StoreType) {
     const cmpLocation = this.appRef.components.map((cmp) => cmp.location.nativeElement);
     /**
      * Save state
@@ -131,7 +131,7 @@ export class AppModule {
     removeNgStyles();
   }
 
-  public hmrAfterDestroy(store: StoreType) {
+  public hmrAfterDestroy (store: StoreType) {
     /**
      * Display new elements
      */

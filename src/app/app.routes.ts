@@ -1,5 +1,5 @@
-import {Routes} from '@angular/router';
-import {MoviesComponent, NoContentComponent, MovieDetailComponent} from './features';
+import { Routes } from '@angular/router';
+import { MoviesComponent, NoContentComponent, MovieDetailComponent } from './features';
 
 export const ROUTES: Routes = [
   {path: '', component: MoviesComponent},

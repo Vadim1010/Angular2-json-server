@@ -5,10 +5,10 @@ import {
   OnDestroy,
   Input
 } from '@angular/core';
-import {DataService} from '../../core';
-import {MovieModels} from '../movie.model'
-import {Router} from '@angular/router';
-import {Subscription} from "rxjs";
+import { DataService } from '../../core';
+import { MovieModels } from '../movie.model';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'mv-movies',
@@ -18,15 +18,15 @@ import {Subscription} from "rxjs";
 })
 export class MoviesComponent implements OnInit, OnDestroy {
   @Input() movies: MovieModels[];
-  private subscriptions: Subscription[] = [];
-
   numberStars: number[];
 
-  constructor(private dataService: DataService,
-              private router: Router) {
+  private subscriptions: Subscription[] = [];
+
+  constructor (private dataService: DataService,
+               private router: Router) {
   }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
     this.numberStars = this.dataService.numberStars;
 
     this.subscriptions.push(this.dataService.getAll().subscribe(
@@ -35,14 +35,14 @@ export class MoviesComponent implements OnInit, OnDestroy {
       }));
   }
 
-  sorting(value: string): void {
+  sorting (value: string): void {
     this.subscriptions.push(this.dataService.sorting(value).subscribe(
       (result) => {
         this.movies = result;
       }));
   }
 
-  changeMovie(event) {
+  changeMovie (event) {
     let data = event.movie;
 
     data[event.value] = event.number;
@@ -50,19 +50,19 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  searchs(value: string): void {
+  searchs (value: string): void {
     this.subscriptions.push(this.dataService.filter(value).subscribe(
       (result) => {
         this.movies = result;
       }));
   }
 
-  detailsMovie(id: number) {
+  detailsMovie (id: number) {
     this.router.navigate(['/movie/' + id]);
   }
 
-  ngOnDestroy() {
-    this.subscriptions.forEach((item)=> {
+  ngOnDestroy () {
+    this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });
   }

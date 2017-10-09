@@ -3,4 +3,4 @@ export * from './footer';
 export * from './header';
 export * from './input';
 export * from './star';
-export  * from './like';
+export * from './like';

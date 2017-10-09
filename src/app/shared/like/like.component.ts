@@ -13,10 +13,10 @@ export class LikeComponent implements Input, Output {
   @Input() likes: number;
   @Output() clickLike: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor () {
   }
 
-  changeRating(value: string, number: number): void {
-    this.clickLike.emit({value: value, number: number})
+  changeRating (valueType: string, numberValue: number): void {
+    this.clickLike.emit({value: valueType, number: numberValue});
   }
 }

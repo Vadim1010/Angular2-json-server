@@ -6,8 +6,8 @@ import {
   OnInit,
   ViewEncapsulation
 } from '@angular/core';
-import {AppState} from './app.service';
-import {Router} from '@angular/router';
+import { AppState } from './app.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app',
@@ -19,10 +19,10 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
 
-  constructor(public appState: AppState) {
+  constructor (public appState: AppState) {
   }
 
-  public ngOnInit() {
+  public ngOnInit () {
     console.log('Initial App State', this.appState.state);
   }
 }

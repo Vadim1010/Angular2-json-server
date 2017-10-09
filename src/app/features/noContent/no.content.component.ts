@@ -9,5 +9,5 @@ import {
   styleUrls: ['no.content.component.scss'],
   encapsulation: ViewEncapsulation.Native
 })
-export class NoContentComponent{
+export class NoContentComponent {
 }

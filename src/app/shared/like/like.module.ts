@@ -1,9 +1,9 @@
-﻿import {NgModule} from '@angular/core';
-import {LikeComponent} from './like.component';
-import {InputModule} from '../input'
+﻿import { NgModule } from '@angular/core';
+import { LikeComponent } from './like.component';
+import { InputModule } from '../input';
 
 @NgModule({
-  imports:[
+  imports: [
     InputModule
   ],
   declarations: [

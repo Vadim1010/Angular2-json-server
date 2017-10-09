@@ -10,6 +10,6 @@ import {
   encapsulation: ViewEncapsulation.Native
 })
 export class HeaderComponent {
-  constructor() {
+  constructor () {
   }
 }

@@ -4,7 +4,7 @@ import {
   Input,
   Output, EventEmitter
 } from '@angular/core';
-import {MovieModels} from '../../../movie.model'
+import { MovieModels } from '../../../movie.model';
 
 @Component({
   selector: 'mv-item-movie',
@@ -18,11 +18,11 @@ export class ItemMovieComponent implements Input, Output {
   @Output() changeMovie: EventEmitter<any> = new EventEmitter();
   @Output() changeDetail: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor () {
   }
 
-  changeRating(value: string, number: number): void {
-    this.changeMovie.emit({movie: this.movie, value: value, number: number});
+  changeRating (valueType: string, numberValue: number): void {
+    this.changeMovie.emit({movie: this.movie, value: valueType, number: numberValue});
   }
 
   changeLikes (event) {
@@ -30,7 +30,7 @@ export class ItemMovieComponent implements Input, Output {
     this.changeMovie.emit(event);
   }
 
-  clickHeader(){
+  clickHeader () {
     this.changeDetail.emit(this.movie.id);
   }
 }

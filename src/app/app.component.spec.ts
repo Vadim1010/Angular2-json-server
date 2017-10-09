@@ -21,14 +21,14 @@ describe(`App`, () => {
    */
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AppComponent ],
+      declarations: [AppComponent],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [AppState]
     })
     /**
      * Compile template and css
      */
-    .compileComponents();
+      .compileComponents();
   }));
 
   /**
@@ -36,7 +36,7 @@ describe(`App`, () => {
    */
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    comp    = fixture.componentInstance;
+    comp = fixture.componentInstance;
 
     /**
      * Trigger initial data binding
@@ -49,11 +49,11 @@ describe(`App`, () => {
     expect(comp).toBeDefined();
   });
 
-  it(`should be @AngularClass`, () => {
-    expect(comp.url).toEqual('https://twitter.com/AngularClass');
-    expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
-    expect(comp.name).toEqual('Angular 2 Webpack Starter');
-  });
+  // it(`should be @AngularClass`, () => {
+  //   expect(comp.url).toEqual('https://twitter.com/AngularClass');
+  //   expect(comp.angularclassLogo).toEqual('assets/img/angularclass-avatar.png');
+  //   expect(comp.name).toEqual('Angular 2 Webpack Starter');
+  // });
 
   it('should log ngOnInit', () => {
     spyOn(console, 'log');

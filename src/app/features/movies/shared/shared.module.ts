@@ -1,11 +1,12 @@
-import {NgModule} from '@angular/core';
-import {ItemMovieModule} from './itemMovie'
+import { NgModule } from '@angular/core';
+import { ItemMovieModule } from './itemMovie';
+
 @NgModule({
   imports: [
-    ItemMovieModule,
+    ItemMovieModule
   ],
   exports: [
-    ItemMovieModule,
+    ItemMovieModule
   ]
 })
 export class SharedModule {

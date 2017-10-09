@@ -17,10 +17,10 @@ export class InputComponent {
   @Input() placeholder: string = '';
   @Output() changeInput: EventEmitter<any> = new EventEmitter();
 
-  constructor() {
+  constructor () {
   }
 
-  change(event){
+  change (event) {
     this.changeInput.emit(event.target.value);
   }
 }
