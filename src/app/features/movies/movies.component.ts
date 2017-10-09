@@ -17,7 +17,7 @@ import {Subscription} from "rxjs";
   encapsulation: ViewEncapsulation.Native
 })
 export class MoviesComponent implements OnInit, OnDestroy {
-  @Input() items: MovieModels[];
+  @Input() movies: MovieModels[];
   private subscriptions: Subscription[] = [];
 
   numberStars: number[];
@@ -31,16 +31,15 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(this.dataService.getAll().subscribe(
       (result) => {
-        this.items = result;
+        this.movies = result;
       }));
   }
 
   sorting(value: string): void {
     this.subscriptions.push(this.dataService.sorting(value).subscribe(
       (result) => {
-        this.items = result;
+        this.movies = result;
       }));
-
   }
 
   changeMovie(event) {
@@ -54,7 +53,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
   searchs(value: string): void {
     this.subscriptions.push(this.dataService.filter(value).subscribe(
       (result) => {
-        this.items = result;
+        this.movies = result;
       }));
   }
 
@@ -63,10 +62,8 @@ export class MoviesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((item)=>{
-      if(item){
-        item.unsubscribe();
-      }
+    this.subscriptions.forEach((item)=> {
+      item.unsubscribe();
     });
   }
 }

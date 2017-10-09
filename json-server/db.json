@@ -4,8 +4,8 @@
       "id": 1,
       "title": "The Shawshank Redemption",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SY500_CR0,0,336,500_AL_.jpg",
-      "stars": 5,
-      "likes": 28,
+      "stars": 2,
+      "likes": 30,
       "genres": [
         "Crime",
         "Drama"
@@ -23,8 +23,8 @@
       "id": 2,
       "title": "The Godfather",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,352,500_AL_.jpg",
-      "stars": 5,
-      "likes": 19,
+      "stars": 1,
+      "likes": 25,
       "genres": [
         "Crime",
         "Drama"
@@ -41,8 +41,8 @@
       "id": 3,
       "title": "The Godfather: Part II",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjZiNzIxNTQtNDc5Zi00YWY1LThkMTctMDgzYjY4YjI1YmQyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,351,500_AL_.jpg",
-      "stars": 3,
-      "likes": 14,
+      "stars": 5,
+      "likes": 13,
       "genres": [
         "Crime",
         "Drama"
@@ -254,7 +254,7 @@
       "id": 15,
       "title": "The Lord of the Rings: The Two Towers",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTAyNDU0NjY4NTheQTJeQWpwZ15BbWU2MDk4MTY2Nw@@._V1_SY256_SX175_AL_.jpg",
-      "stars": 4,
+      "stars": 1,
       "likes": 10,
       "genres": [
         "Adventure",

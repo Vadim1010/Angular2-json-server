@@ -8,37 +8,39 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class DataService {
   private moviesUrl: string = 'http://localhost:3000/movies/';
-  public numberStars: number[] = [1, 2, 3, 4, 5];
+
+  numberStars: number[] = [1, 2, 3, 4, 5];
 
   constructor(private http: Http) {
   }
 
-  public getAll(): Observable<MovieModels[]> {
+  getAll(): Observable<MovieModels[]> {
     return this.http.get(this.moviesUrl)
       .map((response) => response.json())
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public getById(id: number): Observable<MovieModels> {
+  getById(id: number): Observable<MovieModels> {
     return this.http.get(this.moviesUrl + id)
       .map((response) => {
-        return response.json()})
+        return response.json()
+      })
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public sorting(value: string): Observable<MovieModels[]> {
+  sorting(value: string): Observable<MovieModels[]> {
     return this.http.get(`${this.moviesUrl}?_sort=${value}&_order=desc`)
       .map((response) => response.json())
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public filter(value: string): Observable<MovieModels[]> {
+  filter(value: string): Observable<MovieModels[]> {
     return this.http.get(`${this.moviesUrl}?q=${value}`)
       .map((response) => response.json())
       .catch((error) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  public postData(data: MovieModels, id: number): Observable<MovieModels[]> {
+  postData(data: MovieModels, id: number): Observable<MovieModels[]> {
     const body = JSON.stringify(data);
     let headers = new Headers({'Content-Type': 'application/json; charset=utf-8'});
 

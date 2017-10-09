@@ -5,9 +5,11 @@ import {
   OnDestroy, OnInit
 } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
-import { Subscription } from 'rxjs/Subscription';
-import {DataService} from '../../core'
-import {MovieModels} from '../movie.model'
+import {Subscription} from 'rxjs/Subscription';
+import {DataService} from '../../core';
+import {MovieModels} from '../movie.model';
+
+import {MovieService} from '../shared'
 
 @Component({
   selector: 'mv-movie-detail',
@@ -17,7 +19,7 @@ import {MovieModels} from '../movie.model'
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
   private numberStars: number[];
-  private itemDescription: MovieModels;
+  private movieDescription: MovieModels;
   private subscriptions: Subscription[] = [];
 
   constructor(private route: ActivatedRoute,
@@ -28,7 +30,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subscriptions.push(this.route.paramMap
       .switchMap((params: ParamMap)=>this.dataService.getById(+params.get('id')))
-      .subscribe((movie)=> this.itemDescription = movie, (error)=>this.router.navigate(['/404'])));
+      .subscribe((movie)=> this.movieDescription = movie, (error)=>this.router.navigate(['/404'])));
 
     this.numberStars = this.dataService.numberStars;
     document.documentElement.scrollTop = 0;
@@ -39,23 +41,21 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   changeRating(value: string, number: number): void {
-    let data = this.itemDescription;
+    let data = this.movieDescription;
     data[value] = number;
 
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  changeLikes(event){
-    let data = this.itemDescription;
+  changeLikes(event) {
+    let data = this.movieDescription;
     data[event.value] = event.number;
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((item)=>{
-      if(item){
-        item.unsubscribe()
-      }
+    this.subscriptions.forEach((item)=> {
+      item.unsubscribe()
     });
   }
 }

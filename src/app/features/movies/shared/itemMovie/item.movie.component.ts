@@ -13,28 +13,24 @@ import {MovieModels} from '../../../movie.model'
   encapsulation: ViewEncapsulation.None
 })
 export class ItemMovieComponent implements Input, Output {
-  @Input() item: MovieModels;
+  @Input() movie: MovieModels;
   @Input() numberStars: number[];
   @Output() changeMovie: EventEmitter<any> = new EventEmitter();
   @Output() changeDetail: EventEmitter<any> = new EventEmitter();
-  @Output() changeRatingMovie: EventEmitter<any> = new EventEmitter();
-  @Output() changeLikesMovie: EventEmitter<any> = new EventEmitter();
 
   constructor() {
   }
 
   changeRating(value: string, number: number): void {
-    this.changeMovie.emit({movie: this.item, value: value, number: number});
+    this.changeMovie.emit({movie: this.movie, value: value, number: number});
   }
 
   changeLikes (event) {
-    event.movie = this.item;
+    event.movie = this.movie;
     this.changeMovie.emit(event);
   }
 
   clickHeader(){
-    this.changeDetail.emit(this.item.id);
+    this.changeDetail.emit(this.movie.id);
   }
-
-
 }

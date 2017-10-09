@@ -2,7 +2,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {MovieDetailComponent} from './movie.detail.component';
-import {StarModule, InputModule, LikeModule} from '../../shared'
+import {StarModule, InputModule, LikeModule} from '../../shared';
 
 @NgModule({
   imports: [
@@ -15,7 +15,7 @@ import {StarModule, InputModule, LikeModule} from '../../shared'
   declarations: [
     MovieDetailComponent
   ],
-  exports: [MovieDetailComponent],
+  exports: [MovieDetailComponent]
 })
 
 export class MovieDetailModule {
