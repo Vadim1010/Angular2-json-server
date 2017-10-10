@@ -1,6 +1,6 @@
 import {
   Component,
-  Input, ViewEncapsulation
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({
@@ -10,5 +10,4 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class FooterComponent {
-  @Input() className: string = 'footer';
 }

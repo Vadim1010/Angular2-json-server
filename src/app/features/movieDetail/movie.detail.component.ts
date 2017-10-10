@@ -8,7 +8,6 @@ import 'rxjs/add/operator/switchMap';
 import { Subscription } from 'rxjs/Subscription';
 import { DataService } from '../../core';
 import { MovieModels } from '../movie.model';
-import { MovieService } from '../shared';
 
 @Component({
   selector: 'mv-movie-detail',
@@ -26,17 +25,17 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
                private dataService: DataService) {
   }
 
-  ngOnInit () {
+  ngOnInit (): void {
     this.subscriptions.push(this.route.paramMap
       .switchMap((params: ParamMap) => this.dataService.getById(+params.get('id')))
-      .subscribe((movie) => this.movieDescription = movie,
-        (error) => this.router.navigate(['/404'])));
+      .subscribe((movie: MovieModels) => this.movieDescription = movie,
+        (error) => console.log('Not found page')));
 
     this.numberStars = this.dataService.numberStars;
     document.documentElement.scrollTop = 0;
   }
 
-  goHome () {
+  goHome (): void {
     this.router.navigate(['/']);
   }
 
@@ -47,13 +46,13 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  changeLikes (event) {
+  changeLikes (event): void {
     let data = this.movieDescription;
     data[event.value] = event.number;
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  ngOnDestroy () {
+  ngOnDestroy (): void {
     this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });

@@ -1,9 +1,8 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { MoviesComponent } from './movies.component';
-import { ItemMovieModule } from './itemMovie';
-import { InputModule, StarModule } from '../../shared';
+import { ItemMovieComponent } from './item.movie.component';
+import { InputModule, StarModule, LikeModule } from '../../../shared';
 
 @NgModule({
   imports: [
@@ -11,12 +10,12 @@ import { InputModule, StarModule } from '../../shared';
     FormsModule,
     InputModule,
     StarModule,
-    ItemMovieModule
+    LikeModule
   ],
   declarations: [
-    MoviesComponent
+    ItemMovieComponent,
   ],
-  exports: [MoviesComponent],
+  exports: [ItemMovieComponent]
 })
-export class MoviesModule {
+export class ItemMovieModule {
 }

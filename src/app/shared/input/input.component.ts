@@ -20,7 +20,7 @@ export class InputComponent {
   constructor () {
   }
 
-  change (event) {
+  change (event): void {
     this.changeInput.emit(event.target.value);
   }
 }

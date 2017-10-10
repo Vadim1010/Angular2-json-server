@@ -30,19 +30,19 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.numberStars = this.dataService.numberStars;
 
     this.subscriptions.push(this.dataService.getAll().subscribe(
-      (result) => {
+      (result: MovieModels[]) => {
         this.movies = result;
       }));
   }
 
   sorting (value: string): void {
     this.subscriptions.push(this.dataService.sorting(value).subscribe(
-      (result) => {
+      (result: MovieModels[]) => {
         this.movies = result;
       }));
   }
 
-  changeMovie (event) {
+  changeMovie (event): void {
     let data = event.movie;
 
     data[event.value] = event.number;
@@ -52,16 +52,16 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   searchs (value: string): void {
     this.subscriptions.push(this.dataService.filter(value).subscribe(
-      (result) => {
+      (result: MovieModels[]) => {
         this.movies = result;
       }));
   }
 
-  detailsMovie (id: number) {
+  detailsMovie (id: number):void {
     this.router.navigate(['/movie/' + id]);
   }
 
-  ngOnDestroy () {
+  ngOnDestroy ():void {
     this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });
