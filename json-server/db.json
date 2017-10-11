@@ -5,7 +5,7 @@
       "title": "The Shawshank Redemption",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SY500_CR0,0,336,500_AL_.jpg",
       "stars": 2,
-      "likes": 25,
+      "likes": 32,
       "genres": [
         "Crime",
         "Drama"
@@ -23,8 +23,8 @@
       "id": 2,
       "title": "The Godfather",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,352,500_AL_.jpg",
-      "stars": 5,
-      "likes": 13,
+      "stars": 3,
+      "likes": 10,
       "genres": [
         "Crime",
         "Drama"
@@ -41,8 +41,8 @@
       "id": 3,
       "title": "The Godfather: Part II",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMjZiNzIxNTQtNDc5Zi00YWY1LThkMTctMDgzYjY4YjI1YmQyL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,351,500_AL_.jpg",
-      "stars": 5,
-      "likes": 13,
+      "stars": 1,
+      "likes": 9,
       "genres": [
         "Crime",
         "Drama"
@@ -78,7 +78,7 @@
       "id": 5,
       "title": "12 Angry Men",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODQwOTc5MDM2N15BMl5BanBnXkFtZTcwODQxNTEzNA@@._V1_SY500_CR0,0,333,500_AL_.jpg",
-      "stars": 5,
+      "stars": 1,
       "likes": 13,
       "genres": [
         "Drama"
@@ -130,8 +130,8 @@
       "id": 8,
       "title": "The Lord of the Rings: The Return of the King",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BYWY1ZWQ5YjMtMDE0MS00NWIzLWE1M2YtODYzYTk2OTNlYWZmXkEyXkFqcGdeQXVyNDUyOTg3Njg@._V1_SY500_SX334_AL_.jpg",
-      "stars": 1,
-      "likes": 13,
+      "stars": 5,
+      "likes": 16,
       "genres": [
         "Adventure",
         "Drama",
