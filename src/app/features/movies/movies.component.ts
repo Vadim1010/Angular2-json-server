@@ -22,11 +22,11 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   private subscriptions: Subscription[] = [];
 
-  constructor (private dataService: DataService,
-               private router: Router) {
+  constructor(private dataService: DataService,
+              private router: Router) {
   }
 
-  ngOnInit (): void {
+  ngOnInit(): void {
     this.numberStars = this.dataService.numberStars;
 
     this.subscriptions.push(this.dataService.getAll().subscribe(
@@ -35,14 +35,14 @@ export class MoviesComponent implements OnInit, OnDestroy {
       }));
   }
 
-  sorting (value: string): void {
+  sorting(value: string): void {
     this.subscriptions.push(this.dataService.sorting(value).subscribe(
       (result: MovieModels[]) => {
         this.movies = result;
       }));
   }
 
-  changeMovie (event): void {
+  changeMovie(event): void {
     let data = event.movie;
 
     data[event.value] = event.number;
@@ -50,18 +50,18 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.subscriptions.push(this.dataService.postData(data, data.id).subscribe());
   }
 
-  searchs (value: string): void {
+  searchs(value: string): void {
     this.subscriptions.push(this.dataService.filter(value).subscribe(
       (result: MovieModels[]) => {
         this.movies = result;
       }));
   }
 
-  detailsMovie (id: number):void {
+  detailsMovie(id: number): void {
     this.router.navigate(['/movie/' + id]);
   }
 
-  ngOnDestroy ():void {
+  ngOnDestroy(): void {
     this.subscriptions.forEach((item) => {
       item.unsubscribe();
     });

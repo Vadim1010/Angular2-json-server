@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { MovieModels } from '../../features/movie.model';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import { Router} from '@angular/router';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class DataService {
@@ -24,7 +24,11 @@ export class DataService {
   getById(id: number): Observable<MovieModels> {
     return this.http.get(this.moviesUrl + id)
       .map(this._callbackMap)
-      .catch((error: any) => {this.router.navigate(['/404']); return Observable.throw(error.json().error)});
+      .catch((error: any) => {
+          this.router.navigate(['/404']);
+          return Observable.throw(error.json().error);
+        }
+      );
   }
 
   sorting(value: string): Observable<MovieModels[]> {
@@ -49,10 +53,10 @@ export class DataService {
   }
 
   private _callbackMap(response: Response): Observable<MovieModels[]> {
-    return response.json()
+    return response.json();
   }
 
   private _callbackError(error: any): Observable<MovieModels[]> {
-    return Observable.throw(error.json().error || 'Server error')
+    return Observable.throw(error.json().error || 'Server error');
   }
 }

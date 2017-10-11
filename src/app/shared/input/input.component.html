@@ -4,5 +4,5 @@
        [value]="value"
        [placeholder]="placeholder"
        [name]="name"
-       (input)="change($event)"
+       (input)="change($event.target.value)"
 >

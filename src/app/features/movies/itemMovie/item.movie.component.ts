@@ -25,12 +25,12 @@ export class ItemMovieComponent implements Input, Output {
     this.changeMovie.emit({movie: this.movie, value: valueType, number: numberValue});
   }
 
-  changeLikes (event) {
+  changeLikes (event): void {
     event.movie = this.movie;
     this.changeMovie.emit(event);
   }
 
-  clickHeader () {
+  clickHeader (): void {
     this.changeDetail.emit(this.movie.id);
   }
 }

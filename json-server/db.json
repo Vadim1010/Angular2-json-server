@@ -5,7 +5,7 @@
       "title": "The Shawshank Redemption",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SY500_CR0,0,336,500_AL_.jpg",
       "stars": 2,
-      "likes": 30,
+      "likes": 25,
       "genres": [
         "Crime",
         "Drama"
@@ -23,8 +23,8 @@
       "id": 2,
       "title": "The Godfather",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,352,500_AL_.jpg",
-      "stars": 1,
-      "likes": 25,
+      "stars": 5,
+      "likes": 13,
       "genres": [
         "Crime",
         "Drama"
@@ -78,7 +78,7 @@
       "id": 5,
       "title": "12 Angry Men",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODQwOTc5MDM2N15BMl5BanBnXkFtZTcwODQxNTEzNA@@._V1_SY500_CR0,0,333,500_AL_.jpg",
-      "stars": 1,
+      "stars": 5,
       "likes": 13,
       "genres": [
         "Drama"
@@ -112,7 +112,7 @@
       "id": 7,
       "title": "Pulp Fiction",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BMTkxMTA5OTAzMl5BMl5BanBnXkFtZTgwNjA5MDc3NjE@._V1_SY500_CR0,0,336,500_AL_.jpg",
-      "stars": 4,
+      "stars": 1,
       "likes": 30,
       "genres": [
         "Crime",
