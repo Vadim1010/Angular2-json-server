@@ -2,6 +2,7 @@ import {
   Component,
   Input, Output, ViewEncapsulation, EventEmitter
 } from '@angular/core';
+import { EventModel } from '../interfase.models';
 
 @Component({
   selector: 'mv-like',
@@ -10,8 +11,8 @@ import {
   encapsulation: ViewEncapsulation.Native
 })
 export class LikeComponent implements Input, Output {
-  @Input() likes: number;
-  @Output() clickLike: EventEmitter<any> = new EventEmitter();
+  @Input() likes: number = 0;
+  @Output() clickLike: EventEmitter<EventModel> = new EventEmitter();
 
   constructor () {
   }

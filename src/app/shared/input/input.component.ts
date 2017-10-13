@@ -15,7 +15,7 @@ export class InputComponent {
   @Input() value: string = '';
   @Input() name: string = '';
   @Input() placeholder: string = '';
-  @Output() changeInput: EventEmitter<any> = new EventEmitter();
+  @Output() changeInput: EventEmitter<string> = new EventEmitter();
 
   constructor () {
   }

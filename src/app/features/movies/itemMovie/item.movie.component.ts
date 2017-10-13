@@ -4,7 +4,7 @@ import {
   Input,
   Output, EventEmitter
 } from '@angular/core';
-import { MovieModels } from '../../movie.model';
+import { EventModel, MovieModel } from '../../../shared/interfase.models';
 
 @Component({
   selector: 'mv-item-movie',
@@ -13,24 +13,23 @@ import { MovieModels } from '../../movie.model';
   encapsulation: ViewEncapsulation.None
 })
 export class ItemMovieComponent implements Input, Output {
-  @Input() movie: MovieModels;
+  @Input() movie: MovieModel;
   @Input() numberStars: number[];
-  @Output() changeMovie: EventEmitter<any> = new EventEmitter();
-  @Output() changeDetail: EventEmitter<any> = new EventEmitter();
+  @Output() changeMovie: EventEmitter<EventModel> = new EventEmitter();
+  @Output() changeDetail: EventEmitter<number> = new EventEmitter();
 
-  constructor () {
+  constructor() {
   }
 
-  changeRating (valueType: string, numberValue: number): void {
-    this.changeMovie.emit({movie: this.movie, value: valueType, number: numberValue});
+  changeRating(valueType: string, numberValue: number): void {
+    this.changeMovie.emit({itemMovie: this.movie, value: valueType, number: numberValue});
   }
 
-  changeLikes (event): void {
-    event.movie = this.movie;
-    this.changeMovie.emit(event);
+  changeLikes(event: EventModel): void {
+    this.changeRating(event.value, event.number);
   }
 
-  clickHeader (): void {
-    this.changeDetail.emit(this.movie.id);
+  clickHeader(idValue: number): void {
+    this.changeDetail.emit(idValue);
   }
 }

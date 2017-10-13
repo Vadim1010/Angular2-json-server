@@ -6,9 +6,9 @@ import {
   Input
 } from '@angular/core';
 import { DataService } from '../../core';
-import { MovieModels } from '../movie.model';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EventModel, MovieModel } from '../../shared/interfase.models';
 
 @Component({
   selector: 'mv-movies',
@@ -17,10 +17,10 @@ import { Subscription } from 'rxjs';
   encapsulation: ViewEncapsulation.Native
 })
 export class MoviesComponent implements OnInit, OnDestroy {
-  @Input() movies: MovieModels[];
+  @Input() movies: MovieModel[];
   numberStars: number[];
 
-  private subscriptions: Subscription[] = [];
+  subscriptions: Subscription[] = [];
 
   constructor(private dataService: DataService,
               private router: Router) {
@@ -30,20 +30,20 @@ export class MoviesComponent implements OnInit, OnDestroy {
     this.numberStars = this.dataService.numberStars;
 
     this.subscriptions.push(this.dataService.getAll().subscribe(
-      (result: MovieModels[]) => {
+      (result: MovieModel[]) => {
         this.movies = result;
       }));
   }
 
   sorting(value: string): void {
     this.subscriptions.push(this.dataService.sorting(value).subscribe(
-      (result: MovieModels[]) => {
+      (result: MovieModel[]) => {
         this.movies = result;
       }));
   }
 
-  changeMovie(event): void {
-    let data = event.movie;
+  changeMovie(event: EventModel): void {
+    let data: MovieModel = event.itemMovie;
 
     data[event.value] = event.number;
 
@@ -52,7 +52,7 @@ export class MoviesComponent implements OnInit, OnDestroy {
 
   searchs(value: string): void {
     this.subscriptions.push(this.dataService.filter(value).subscribe(
-      (result: MovieModels[]) => {
+      (result: MovieModel[]) => {
         this.movies = result;
       }));
   }

@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { MovieModels } from '../../features/movie.model';
+import { MovieModel } from '../../shared/interfase.models';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
+import 'rxjs/Observable/throw';
+
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -15,35 +17,34 @@ export class DataService {
   constructor(private http: Http, private router: Router) {
   }
 
-  getAll(): Observable<MovieModels[]> {
+  getAll(): Observable<MovieModel[]> {
     return this.http.get(this.moviesUrl)
       .map(this._callbackMap)
       .catch(this._callbackError);
   }
 
-  getById(id: number): Observable<MovieModels> {
+  getById(id: number): Observable<MovieModel> {
     return this.http.get(this.moviesUrl + id)
       .map(this._callbackMap)
-      .catch((error: any) => {
-          this.router.navigate(['/404']);
-          return Observable.throw(error.json().error);
-        }
-      );
+      .catch((error) => {
+        this.router.navigate(['/404']);
+        return Observable.throw(error.json().error || 'Server error');
+      });
   }
 
-  sorting(value: string): Observable<MovieModels[]> {
+  sorting(value: string): Observable<MovieModel[]> {
     return this.http.get(`${this.moviesUrl}?_sort=${value}&_order=desc`)
       .map(this._callbackMap)
       .catch(this._callbackError);
   }
 
-  filter(value: string): Observable<MovieModels[]> {
+  filter(value: string): Observable<MovieModel[]> {
     return this.http.get(`${this.moviesUrl}?q=${value}`)
       .map(this._callbackMap)
       .catch(this._callbackError);
   }
 
-  postData(data: MovieModels, id: number): Observable<MovieModels[]> {
+  postData(data: MovieModel, id: number): Observable<MovieModel[]> {
     const body = JSON.stringify(data);
     let headersType = new Headers({'Content-Type': 'application/json; charset=utf-8'});
 
@@ -52,11 +53,11 @@ export class DataService {
       .catch(this._callbackError);
   }
 
-  private _callbackMap(response: Response): Observable<MovieModels[]> {
+  private _callbackMap(response: Response): Observable<MovieModel[]> {
     return response.json();
   }
 
-  private _callbackError(error: any): Observable<MovieModels[]> {
+  private _callbackError(error: Response): Observable<MovieModel[]> {
     return Observable.throw(error.json().error || 'Server error');
   }
 }
