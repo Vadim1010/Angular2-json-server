@@ -6,7 +6,7 @@ describe('Movies Component', () => {
   let observableMock: any;
   let observableSpy: any;
   let response: any;
-  let routerSpy: any;
+  let routerMock: any;
   let numberStarsMok: number[];
   let movieMock: any;
   let eventMovieMock: any;
@@ -53,11 +53,11 @@ describe('Movies Component', () => {
       numberStars: jasmine.createSpy('numberStars').and.returnValue(numberStarsMok)
     };
 
-    routerSpy = {
+    routerMock = {
       navigate: jasmine.createSpy('navigate')
     };
 
-    sut = new MoviesComponent(dataServiceMock, routerSpy);
+    sut = new MoviesComponent(dataServiceMock, routerMock);
   });
 
   it('should match interface', () => {
@@ -159,7 +159,7 @@ describe('Movies Component', () => {
     });
 
     it('should call dataService.filter', () => {
-      expect(routerSpy.navigate).toHaveBeenCalledWith(['/movie/' + 0]);
+      expect(routerMock.navigate).toHaveBeenCalledWith(['/movie/' + 0]);
     });
   });
 

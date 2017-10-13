@@ -58,10 +58,9 @@ describe('Movie Detail Component', () => {
     routerSpy = {
       navigate: jasmine.createSpy('navigate')
     };
-    // jasmine.createSpyObj('paramMapMock', ['paramMap']);
     routeMock = {
       paramMap: {
-        switchMap: jasmine.createSpy('switchMap').and.returnValue(movieMock)
+        switchMap: jasmine.createSpy('switchMap').and.returnValue(observableSpy)
       }
     };
 
@@ -70,7 +69,7 @@ describe('Movie Detail Component', () => {
   it('should match interface', () => {
     expect(sut.ngOnInit).toBeDefined();
     expect(sut.goHome).toBeDefined();
-    expect(sut.changeRating).toBeDefined();
+    expect(sut.changeMovie).toBeDefined();
     expect(sut.changeLikes).toBeDefined();
     expect(sut.ngOnDestroy).toBeDefined();
   });
@@ -81,8 +80,22 @@ describe('Movie Detail Component', () => {
       sut.ngOnInit();
     });
 
-    it('', () => {
+    it('should be filled numberStars', () => {
+      expect(sut.numberStars).toEqual(dataServiceMock.numberStars);
+    });
 
+    it('should change subscriptions length', () => {
+      expect(sut.subscription.length).toBe(length + 1);
+    });
+
+    describe('#dataService.getById', () => {
+      it('should call dataService.getById', () => {
+        expect(dataServiceMock.getById).toHaveBeenCalled();
+      });
+
+      it('should set movies', () => {
+        expect(sut.movie).toEqual(response);
+      });
     });
 
   });
@@ -97,60 +110,52 @@ describe('Movie Detail Component', () => {
     });
   });
 
-  xdescribe('#changeRating', () => {
-    let changeRatingSpy: jasmine.Spy;
+  xdescribe('#changeMovie', () => {
+    let valueType: any;
+    let numberValue: any;
+
     beforeEach(() => {
-      changeRatingSpy = spyOn(sut, 'changeRating');
+      valueType = 'stars';
+      numberValue = 0;
 
-      sut.changeRating(eventMovieMock.value, eventMovieMock.number);
+      sut.changeMovie(valueType, numberValue);
 
     });
 
-    it('should call changeRating', () => {
-      expect(changeRatingSpy).toHaveBeenCalledWith('string', 0);
-    });
-
-    it('should call dataService.postData', () => {
-      expect(dataServiceMock.postData).toHaveBeenCalledWith(movieMock, movieMock.id);
+    it('should change subscriptions length', () => {
+      expect(sut.changeMovie).toHaveBeenCalledWith('stars', 0);
     });
   });
 
   describe('#changeLikes', () => {
-    let changeLikesSpy: any;
-    let changeRatingSpy: any;
+    let changeMovieSpy: any;
 
     beforeEach(() => {
-      changeLikesSpy = spyOn(sut, 'changeLikes');
+      changeMovieSpy = spyOn(sut, 'changeMovie');
 
       sut.changeLikes(eventMovieMock);
     });
 
-    it('should call changeLikes', () => {
-      expect(sut.changeLikes).toHaveBeenCalledWith(eventMovieMock);
-    });
-
-    it('should call changeRating', () => {
-      changeRatingSpy = spyOn(sut, 'changeRating');
-      sut.changeLikes(eventMovieMock);
-
-      expect(sut.changeRating).toHaveBeenCalledWith(eventMovieMock.value, eventMovieMock.number);
+    it('should call changeMovie', () => {
+      expect(changeMovieSpy).toHaveBeenCalledWith(eventMovieMock.value, eventMovieMock.number);
     });
   });
 
   describe('#ngOnDestroy', () => {
-    let unsubscribeSpy: jasmine.Spy;
+    let subscriptionsSpy: any;
 
     beforeEach(() => {
-      sut.subscription = {
-        unsubscribe: jasmine.createSpy('unsubscribe')
-      };
+      subscriptionsSpy = spyOn(sut.subscription, 'forEach');
 
       sut.ngOnDestroy();
     });
 
-    it('should call unsubscribe', () => {
+    it('should call subscriptions forEach', () => {
+      expect(subscriptionsSpy).toHaveBeenCalled();
+    });
 
-      expect(sut.subscription.unsubscribe).toHaveBeenCalled();
+    it('should change subscriptions length', () => {
+      expect(sut.subscription.length).toBe(0);
     });
   });
 });

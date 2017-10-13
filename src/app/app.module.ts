@@ -30,7 +30,12 @@ import { AppState, InternalStateType } from './app.service';
 import '../styles/styles.scss';
 import '../styles/headings.css';
 import { SharedModule, InputModule, StarModule } from './shared';
-import { FeaturesModule, MovieDetailModule, MoviesModule, NoContentModule } from './features';
+import {
+  FeaturesModule,
+  MovieDetailModule,
+  MoviesModule,
+  NoContentModule,
+  NewMovieModule } from './features';
 import { DataService } from './core';
 
 // Application wide providers
@@ -71,7 +76,8 @@ type StoreType = {
     MoviesModule,
     InputModule,
     StarModule,
-    NoContentModule
+    NoContentModule,
+    NewMovieModule
   ],
   /**
    * Expose our Services and Providers into Angular's dependency injection.

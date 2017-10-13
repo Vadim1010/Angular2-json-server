@@ -16,10 +16,9 @@ import { EventModel, MovieModel } from '../../shared/interfase.models';
   encapsulation: ViewEncapsulation.Native
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
-  movieDescription: MovieModel;
-  subscription: Subscription;
-
-  private numberStars: number[];
+  movie: MovieModel;
+  subscription: Subscription[] = [];
+  numberStars: number[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -27,35 +26,31 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.subscription = this.route.paramMap
+    this.subscription.push(this.route.paramMap
       .switchMap((params: ParamMap) => this.dataService.getById(Number(params.get('id'))))
-      .subscribe((movie: MovieModel) => this.movieDescription = movie,
-        (error) => console.log('Not found page'));
+      .subscribe((movie: MovieModel) => this.movie = movie,
+        (error) => console.log('Not found page')));
 
     this.numberStars = this.dataService.numberStars;
-    document.documentElement.scrollTop = 0;
   }
 
   goHome(): void {
     this.router.navigate(['/']);
   }
 
-  changeRating(value: string, numberType: number): void {
-    let data: MovieModel = this.movieDescription;
-    let childSubscription: Subscription;
+  changeMovie(valueType: string, numberValue: number): void {
+    this.movie[valueType] = numberValue;
 
-    data[value] = numberType;
-
-    childSubscription = this.dataService.postData(data, data.id).subscribe();
-
-    this.subscription.add(childSubscription);
+    this.subscription.push(this.dataService.postData(this.movie, this.movie.id).subscribe());
   }
 
   changeLikes(event: EventModel): void {
-    this.changeRating(event.value, event.number);
+    this.changeMovie(event.value, event.number);
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
-  }
+    this.subscription.forEach((item) => {
+      item.unsubscribe();
+    });
+  };
 }

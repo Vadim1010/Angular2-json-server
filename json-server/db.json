@@ -4,8 +4,8 @@
       "id": 1,
       "title": "The Shawshank Redemption",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BODU4MjU4NjIwNl5BMl5BanBnXkFtZTgwMDU2MjEyMDE@._V1_SY500_CR0,0,336,500_AL_.jpg",
-      "stars": 2,
-      "likes": 32,
+      "stars": 5,
+      "likes": 30,
       "genres": [
         "Crime",
         "Drama"
@@ -23,8 +23,8 @@
       "id": 2,
       "title": "The Godfather",
       "posterUrl": "https://images-na.ssl-images-amazon.com/images/M/MV5BZTRmNjQ1ZDYtNDgzMy00OGE0LWE4N2YtNTkzNWQ5ZDhlNGJmL2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SY500_CR0,0,352,500_AL_.jpg",
-      "stars": 3,
-      "likes": 10,
+      "stars": 1,
+      "likes": 6,
       "genres": [
         "Crime",
         "Drama"

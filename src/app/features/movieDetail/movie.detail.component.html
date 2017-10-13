@@ -4,21 +4,21 @@
     (click)="goHome()"
   >
   </mv-input>
-  <h3 class="movie-details__title" (click)="go()">{{movieDescription?.title}}</h3>
-  <mv-like [likes]="movieDescription?.likes"
+  <h3 class="movie-details__title" (click)="go()">{{movie?.title}}</h3>
+  <mv-like [likes]="movie?.likes"
            (clickLike)="changeLikes($event)"
            class="movie-details__likes">
   </mv-like>
   <div class="movie-details__stars">
     <mv-star *ngFor="let number of numberStars"
-             [className]="(movieDescription?.stars >= number) ? 'star star--active': 'star'"
-             (click)="changeRating('stars', number)">
+             [className]="(movie?.stars >= number) ? 'star star--active': 'star'"
+             (click)="changeMovie('stars', number)">
     </mv-star>
   </div>
-  <img class="movie-details__img" [src]="movieDescription?.posterUrl" [alt]="movieDescription?.title">
+  <img class="movie-details__img" [src]="movie?.posterUrl" [alt]="movie?.title">
   <div class="movie-details__about">
-    <p>Director: {{movieDescription?.director}}</p>
-    <p>Actors: {{movieDescription?.actors}}</p>
-    <p>Description: {{movieDescription?.description}}</p>
+    <p>Director: {{movie?.director}}</p>
+    <p>Actors: {{movie?.actors}}</p>
+    <p>Description: {{movie?.description}}</p>
   </div>
 </div>
