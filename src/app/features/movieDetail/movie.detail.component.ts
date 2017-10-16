@@ -34,10 +34,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
     this.numberStars = this.dataService.numberStars;
   }
 
-  goHome(): void {
-    this.router.navigate(['/']);
-  }
-
   changeMovie(valueType: string, numberValue: number): void {
     this.movie[valueType] = numberValue;
 

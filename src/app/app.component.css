@@ -7,3 +7,25 @@ html, body {
   display: flex;
   justify-content: space-around;
 }
+
+.nav {
+  padding: 15px;
+}
+
+.nav__link {
+  margin: 5px;
+  border: 1px solid #00BCD4;
+  padding: 5px;
+  text-decoration: none;
+  color: #000;
+  border-radius: 5px;
+}
+
+.nav__link:hover {
+  color: #00BCD4;
+}
+
+.nav .active {
+  background: #00BCD4;
+  color: #fff;
+}

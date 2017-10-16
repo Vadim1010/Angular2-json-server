@@ -1,0 +1,49 @@
+.form {
+
+  &__title {
+    text-align: center;
+  }
+  &__item {
+    margin: 5px;
+    display: flex;
+    align-items: center;
+  }
+  &__submit{
+    border: 1px solid #00BCD4;
+    padding: 15px;
+    border-radius: 5px;
+    background: #fff;
+    cursor: pointer;
+  }
+}
+
+.item {
+  margin: 10px;
+  &__input {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  &__error {
+    margin: 10px;
+    color: red;
+  }
+}
+
+.input {
+  padding: 10px;
+  border: 1px solid #00BCD4;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+.ng-dirty.ng-invalid {
+  border-color: red;
+}
+
+.ng-dirty.ng-valid {
+  border-color: green;
+}
+input, textarea {
+  outline: none;
+}

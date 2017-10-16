@@ -6,7 +6,7 @@ export interface EventModel {
 };
 
 export interface MovieModel {
-  id: number;
+  id?: number;
   title: string;
   posterUrl: string;
   stars: number;

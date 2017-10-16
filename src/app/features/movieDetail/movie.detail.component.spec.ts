@@ -68,7 +68,6 @@ describe('Movie Detail Component', () => {
   });
   it('should match interface', () => {
     expect(sut.ngOnInit).toBeDefined();
-    expect(sut.goHome).toBeDefined();
     expect(sut.changeMovie).toBeDefined();
     expect(sut.changeLikes).toBeDefined();
     expect(sut.ngOnDestroy).toBeDefined();
@@ -98,16 +97,6 @@ describe('Movie Detail Component', () => {
       });
     });
 
-  });
-
-  describe('#goHome', () => {
-    beforeEach(() => {
-      sut.goHome();
-    });
-
-    it('should call goHome', () => {
-      expect(routerSpy.navigate).toHaveBeenCalledWith(['/']);
-    });
   });
 
   xdescribe('#changeMovie', () => {

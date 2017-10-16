@@ -1,12 +1,14 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { NewMovieComponent } from './new.movie.component';
+import { InputModule } from '../../shared';
 
 @NgModule({
   imports: [
     BrowserModule,
-    FormsModule,
+    ReactiveFormsModule,
+    InputModule
   ],
   declarations: [
     NewMovieComponent

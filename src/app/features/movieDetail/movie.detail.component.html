@@ -1,9 +1,4 @@
 <div class="movie-details">
-  <mv-input
-    [value]="'Home'"
-    (click)="goHome()"
-  >
-  </mv-input>
   <h3 class="movie-details__title" (click)="go()">{{movie?.title}}</h3>
   <mv-like [likes]="movie?.likes"
            (clickLike)="changeLikes($event)"

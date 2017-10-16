@@ -1,1 +1,54 @@
-<h1>Create new movie</h1>
+<form [formGroup]="newMovieForm" (submit)="onSabmite(newMovieForm)" class="form">
+  <h1 class="form__title">Create new movie</h1>
+  <div class="form__item">
+    <label class="item__input">Name movie:
+      <input class="input" formControlName="title">
+    </label>
+    <div class="item__error" *ngIf="formErrors.title">
+      {{formErrors.title}}
+    </div>
+  </div>
+  <div class="form__item">
+    <label class="item__input">Url img movie:
+      <input class="input" formControlName="posterUrl">
+    </label>
+    <div class="item__error" *ngIf="formErrors.posterUrl">
+      {{formErrors.posterUrl}}
+    </div>
+  </div>
+  <div class="form__item">
+    <label class="item__input">Genres movie:
+      <input class="input" formControlName="genres">
+    </label>
+    <div class="item__error" *ngIf="formErrors.genres">
+      {{formErrors.genres}}
+    </div>
+  </div>
+  <div class="form__item">
+    <label class="item__input">Actors movie:
+      <input class="input" formControlName="actors">
+    </label>
+    <div class="item__error" *ngIf="formErrors.actors">
+      {{formErrors.actors}}
+    </div>
+  </div>
+  <div class="form__item">
+    <label class="item__input">Director movie:
+      <input class="input" formControlName="director">
+    </label>
+    <div class="item__error" *ngIf="formErrors.director">
+      {{formErrors.director}}
+    </div>
+  </div>
+  <div class="form__item">
+    <label class="item__input">Description movie:
+      <textarea class="input" formControlName="description"></textarea>
+    </label>
+    <div class="item__error" *ngIf="formErrors.description">
+      {{formErrors.description}}
+    </div>
+  </div>
+  <input formControlName="stars" *ngIf="false">
+  <input formControlName="likes" *ngIf="false">
+  <input type="submit" value="Create" [disabled]="newMovieForm.invalid" class="form__submit">
+</form>

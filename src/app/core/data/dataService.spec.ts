@@ -1,5 +1,5 @@
 import { DataService } from './dataService';
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 
 describe('Data Service', () => {
   let sut: DataService;
@@ -10,6 +10,7 @@ describe('Data Service', () => {
   let mapResponseMock: any;
   let url = 'http://localhost:3000/movies/';
   const responseMock = Observable.of('response');
+  const ObservableErrorMock = Observable.throw('error');
 
   beforeEach(() => {
     movieMock = {
@@ -24,21 +25,18 @@ describe('Data Service', () => {
       direcription: 'direcription'
     };
 
-
-
     routerMock = {
       navigate: jasmine.createSpy('navigate')
     };
 
     httpMock = jasmine.createSpyObj('httpMock', ['get', 'post', 'put', 'delete']);
 
-    serverResponseMock = jasmine.createSpyObj('mockServerResponse', ['json']);
+    serverResponseMock = jasmine.createSpyObj('serverResponseMock', ['json']);
 
-
-    mapResponseMock = jasmine.createSpyObj('serverResponseMock', ['map']);
+    mapResponseMock = jasmine.createSpyObj('mapResponseMock', ['map', 'catch']);
 
     mapResponseMock.map.and.returnValue(responseMock);
-    mapResponseMock.catch.and.returnValue(responseMock);
+    mapResponseMock.catch.and.returnValue(ObservableErrorMock);
 
     httpMock.get.and.returnValue(mapResponseMock);
 
@@ -116,16 +114,16 @@ describe('Data Service', () => {
     });
   });
 
-  xdescribe('#postData', () => {
+  xdescribe('#putData', () => {
     let id: any;
     beforeEach(() => {
       id = 'test';
       url = `http://localhost:3000/movies/?q=${id}`;
 
-      sut.postData(movieMock, id);
+      sut.putData(movieMock, id);
     });
 
-    it('should post Data', () => {
+    it('should put Data', () => {
       expect(httpMock.put).toHaveBeenCalledWith(url, movieMock, {header: 'header'});
     });
   });
@@ -141,14 +139,14 @@ describe('Data Service', () => {
     });
   });
 
-  describe('#_callbackError', () => {
+  xdescribe('#_callbackError', () => {
     const convertedResponse = Symbol('converted server response');
     beforeEach(() => {
       serverResponseMock.json.and.returnValue(convertedResponse);
     });
 
     it('should extract movie from error when content-type is json', () => {
-      expect(sut._callbackError(serverResponseMock)).toEqual(convertedResponse);
+      expect(sut._callbackError(convertedResponse)).toEqual(ObservableErrorMock);
     });
   });
 });
