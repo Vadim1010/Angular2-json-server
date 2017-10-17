@@ -16,7 +16,6 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.Native
 })
 export class NewMovieComponent implements OnInit, OnDestroy {
-
   newMovieForm: FormGroup;
   subscriptions: Subscription;
 
@@ -31,8 +30,7 @@ export class NewMovieComponent implements OnInit, OnDestroy {
 
   validationMassages = {
     title: {
-      required: 'Required field',
-      minlength: 'erorr'
+      required: 'Required field'
     },
     posterUrl: {
       required: 'Required field',
@@ -55,7 +53,7 @@ export class NewMovieComponent implements OnInit, OnDestroy {
   };
 
   constructor(private fb: FormBuilder,
-              private dataServise: DataService,
+              private dataService: DataService,
               private  router: Router) {
   }
 
@@ -70,7 +68,7 @@ export class NewMovieComponent implements OnInit, OnDestroy {
       ],
       posterUrl: ['',
         [Validators.required,
-          Validators.pattern('(http)')
+          Validators.pattern(/^https?:\/\/[^\s]+(?=.(jpe?g|png|gif)).\1$/)
         ]
       ],
       genres: ['',
@@ -119,7 +117,7 @@ export class NewMovieComponent implements OnInit, OnDestroy {
   }
 
   onSabmite(form: FormGroup): void {
-    this.subscriptions = this.dataServise.addNewMovie(form.value).subscribe( () => {
+    this.subscriptions = this.dataService.addNewMovie(form.value).subscribe( () => {
       this.router.navigate(['/movies']);
     });
   }

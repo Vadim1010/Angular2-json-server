@@ -14,4 +14,4 @@ npm start
 
    *npm install
    
-    *json-server --watch db.json
+    *json-server -w db.json

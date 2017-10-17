@@ -44,6 +44,8 @@
 .ng-dirty.ng-valid {
   border-color: green;
 }
+
 input, textarea {
   outline: none;
+  resize: none;
 }

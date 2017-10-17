@@ -268,39 +268,6 @@
       ],
       "director": "Sir Peter Robert Jackson",
       "description": "While Frodo and Sam, now accompanied by a new guide, continue their hopeless journey towards the land of shadow to destroy the One Ring, each member of the broken fellowship plays their part in the battle against the evil wizard Saruman and his armies of Isengard."
-    },
-    {
-      "title": "Name movie",
-      "posterUrl": "posterUrl",
-      "genres": "genres",
-      "actors": "actors",
-      "director": "director",
-      "description": "description",
-      "likes": 6,
-      "stars": 5,
-      "id": 16
-    },
-    {
-      "title": "1",
-      "posterUrl": "2",
-      "genres": "3",
-      "actors": "4",
-      "director": "5",
-      "description": "121215452",
-      "likes": 0,
-      "stars": 0,
-      "id": 17
-    },
-    {
-      "title": "w312",
-      "posterUrl": "http://geotop.zp.ua/img/offer1.jpg",
-      "genres": "123",
-      "actors": "123",
-      "director": "123",
-      "description": "123123123",
-      "likes": 0,
-      "stars": 0,
-      "id": 18
     }
   ]
 }
