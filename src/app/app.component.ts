@@ -12,10 +12,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app',
   encapsulation: ViewEncapsulation.None,
-  styleUrls: [
-    './app.component.css'
-  ],
-  templateUrl: './app.html'
+  styleUrls: ['./app.component.css'],
+  templateUrl: 'app.component.html'
 })
 export class AppComponent implements OnInit {
 

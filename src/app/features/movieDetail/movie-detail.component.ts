@@ -6,38 +6,39 @@ import {
 } from '@angular/core';
 import 'rxjs/add/operator/switchMap';
 import { Subscription } from 'rxjs/Subscription';
-import { DataService } from '../../core';
-import { EventModel, MovieModel } from '../../shared/interfase.models';
+import { MoviesResourceService } from '../../core';
+import { EventModel, MovieModel } from '../../shared/interface.models';
 
 @Component({
   selector: 'mv-movie-detail',
-  templateUrl: 'movie.detail.component.html',
-  styleUrls: ['movie.detail.component.scss'],
+  templateUrl: 'movie-detail.component.html',
+  styleUrls: ['movie-detail.component.scss'],
   encapsulation: ViewEncapsulation.Native
 })
 export class MovieDetailComponent implements OnInit, OnDestroy {
   movie: MovieModel;
-  subscription: Subscription[] = [];
+  subscription: Subscription;
   numberStars: number[];
 
   constructor(private route: ActivatedRoute,
               private router: Router,
-              private dataService: DataService) {
+              private moviesResourceService: MoviesResourceService) {
   }
 
   ngOnInit(): void {
-    this.subscription.push(this.route.paramMap
-      .switchMap((params: ParamMap) => this.dataService.getById(Number(params.get('id'))))
+    this.subscription = this.route.paramMap
+      .switchMap((params: ParamMap) => this.moviesResourceService.getById(Number(params.get('id'))))
       .subscribe((movie: MovieModel) => this.movie = movie,
-        (error) => console.log('Not found page')));
+        (error) => this.router.navigate(['/404']));
 
-    this.numberStars = this.dataService.numberStars;
+    this.numberStars = this.moviesResourceService.numberStars;
   }
 
   changeMovie(valueType: string, numberValue: number): void {
     this.movie[valueType] = numberValue;
 
-    this.subscription.push(this.dataService.postData(this.movie, this.movie.id).subscribe());
+    this.subscription.add(this.moviesResourceService.postData(this.movie, this.movie.id)
+      .subscribe());
   }
 
   changeLikes(event: EventModel): void {
@@ -45,8 +46,6 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.forEach((item) => {
-      item.unsubscribe();
-    });
+    this.subscription.unsubscribe();
   };
 }

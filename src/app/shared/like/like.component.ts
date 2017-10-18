@@ -2,7 +2,7 @@ import {
   Component,
   Input, Output, ViewEncapsulation, EventEmitter
 } from '@angular/core';
-import { EventModel } from '../interfase.models';
+import { EventModel } from '../interface.models';
 
 @Component({
   selector: 'mv-like',

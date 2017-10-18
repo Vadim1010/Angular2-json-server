@@ -1,16 +1,19 @@
-import { DataService } from './dataService';
+import { MoviesResourceService } from './MoviesResourceService';
 import { Observable } from 'rxjs';
+import { Headers } from '@angular/http';
 
-describe('Data Service', () => {
-  let sut: DataService;
+describe('Movie Resource Service', () => {
+  let sut: MoviesResourceService;
   let movieMock: any;
   let routerMock: any;
   let httpMock: any;
   let serverResponseMock: any;
   let mapResponseMock: any;
+  let catchResponseMock: any;
   let url = 'http://localhost:3000/movies/';
+  let errorMock: any;
   const responseMock = Observable.of('response');
-  const ObservableErrorMock = Observable.throw('error');
+  const headerMock = new Headers({'Content-Type': 'application/json; charset=utf-8'});
 
   beforeEach(() => {
     movieMock = {
@@ -29,18 +32,23 @@ describe('Data Service', () => {
       navigate: jasmine.createSpy('navigate')
     };
 
+    errorMock = {
+      json: jasmine.createSpy('json')
+    };
+
     httpMock = jasmine.createSpyObj('httpMock', ['get', 'post', 'put', 'delete']);
 
     serverResponseMock = jasmine.createSpyObj('serverResponseMock', ['json']);
 
-    mapResponseMock = jasmine.createSpyObj('mapResponseMock', ['map', 'catch']);
+    mapResponseMock = jasmine.createSpyObj('mapResponseMock', ['map']);
 
     mapResponseMock.map.and.returnValue(responseMock);
-    mapResponseMock.catch.and.returnValue(ObservableErrorMock);
 
     httpMock.get.and.returnValue(mapResponseMock);
+    httpMock.post.and.returnValue(mapResponseMock);
+    httpMock.put.and.returnValue(mapResponseMock);
 
-    sut = new DataService(httpMock, routerMock);
+    sut = new MoviesResourceService(httpMock, routerMock);
   });
 
   it('should match interface', () => {
@@ -49,8 +57,9 @@ describe('Data Service', () => {
     expect(sut.sorting).toBeDefined();
     expect(sut.filter).toBeDefined();
     expect(sut.postData).toBeDefined();
-    expect(sut._callbackMap).toBeDefined();
-    expect(sut._callbackError).toBeDefined();
+    expect(sut.callbackError).toBeDefined();
+    expect(sut.callbackMap).toBeDefined();
+    expect(sut.toJson).toBeDefined();
   });
 
   describe('#getAll', () => {
@@ -76,14 +85,6 @@ describe('Data Service', () => {
       expect(httpMock.get).toHaveBeenCalledWith(url);
     });
 
-    xdescribe('#router', () => {
-      beforeEach(() => {
-
-      });
-      it('should router navigate', () => {
-        expect(routerMock.navigate).toHaveBeenCalled();
-      });
-    });
   });
 
   describe('#sorting', () => {
@@ -114,39 +115,75 @@ describe('Data Service', () => {
     });
   });
 
-  xdescribe('#putData', () => {
+  describe('#postData', () => {
     let id: any;
+    let value: string;
     beforeEach(() => {
-      id = 'test';
-      url = `http://localhost:3000/movies/?q=${id}`;
+      id = 1;
+      url = `http://localhost:3000/movies/${id}`;
+      value = JSON.stringify(movieMock);
 
-      sut.putData(movieMock, id);
+      sut.postData(movieMock, id);
     });
 
-    it('should put Data', () => {
-      expect(httpMock.put).toHaveBeenCalledWith(url, movieMock, {header: 'header'});
+    it('should post Data', () => {
+      expect(httpMock.put).toHaveBeenCalledWith(url, value, {headers: headerMock});
     });
   });
 
-  describe('#_callbackMap', () => {
+  describe('#addNewMovie', () => {
+    let value: string;
+    beforeEach(() => {
+      url = `http://localhost:3000/movies/`;
+      value = JSON.stringify(movieMock);
+
+      sut.addNewMovie(movieMock);
+    });
+
+    it('should call toJson', () => {
+      expect(httpMock.post).toHaveBeenCalledWith(url, value, {headers: headerMock});
+    });
+  });
+
+  describe('#callbackMap', () => {
     const convertedResponse = Symbol('converted server response');
     beforeEach(() => {
       serverResponseMock.json.and.returnValue(convertedResponse);
     });
 
+    it('should extract movies from response when content-type is json', () => {
+      expect(sut.callbackMap(serverResponseMock)).toEqual(convertedResponse);
+    });
     it('should extract movie from response when content-type is json', () => {
-      expect(sut._callbackMap(serverResponseMock)).toEqual(convertedResponse);
+      expect(sut.callbackMapMovie(serverResponseMock)).toEqual(convertedResponse);
     });
   });
 
-  xdescribe('#_callbackError', () => {
-    const convertedResponse = Symbol('converted server response');
+  describe('#to json', () => {
+    let value: any;
     beforeEach(() => {
-      serverResponseMock.json.and.returnValue(convertedResponse);
+      value = JSON.stringify(movieMock);
+
+      sut.toJson(movieMock);
     });
 
-    it('should extract movie from error when content-type is json', () => {
-      expect(sut._callbackError(convertedResponse)).toEqual(ObservableErrorMock);
+    it('should call be with movie', () => {
+      expect(sut.toJson).toString();
+    });
+  });
+
+  xdescribe('#callbackCatch', () => {
+    let errorResponseMock;
+
+    beforeEach(() => {
+      errorResponseMock = Observable.throw(errorMock);
+    });
+
+    it('should return message error', () => {
+      expect(sut.callbackError(catchResponseMock)).toEqual(errorResponseMock);
+    });
+    it('should return message error', () => {
+      expect(sut.callbackErrorMovie(catchResponseMock)).toEqual(errorResponseMock);
     });
   });
 });

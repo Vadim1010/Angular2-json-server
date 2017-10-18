@@ -2,7 +2,7 @@
   <h1 class="form__title">Create new movie</h1>
   <div class="form__item">
     <label class="item__input">Name movie:
-      <input class="input" formControlName="title">
+      <input class="input" formControlName="title" placeholder="Title">
     </label>
     <div class="item__error" *ngIf="formErrors.title">
       {{formErrors.title}}
@@ -10,7 +10,7 @@
   </div>
   <div class="form__item">
     <label class="item__input">Url img movie:
-      <input class="input" formControlName="posterUrl">
+      <input class="input" formControlName="posterUrl"  placeholder="http//......png">
     </label>
     <div class="item__error" *ngIf="formErrors.posterUrl">
       {{formErrors.posterUrl}}
@@ -18,7 +18,7 @@
   </div>
   <div class="form__item">
     <label class="item__input">Genres movie:
-      <input class="input" formControlName="genres">
+      <input class="input" formControlName="genres"  placeholder="Crime, Drama">
     </label>
     <div class="item__error" *ngIf="formErrors.genres">
       {{formErrors.genres}}
@@ -26,7 +26,7 @@
   </div>
   <div class="form__item">
     <label class="item__input">Actors movie:
-      <input class="input" formControlName="actors">
+      <input class="input" formControlName="actors" placeholder="Full Name actors">
     </label>
     <div class="item__error" *ngIf="formErrors.actors">
       {{formErrors.actors}}
@@ -34,7 +34,7 @@
   </div>
   <div class="form__item">
     <label class="item__input">Director movie:
-      <input class="input" formControlName="director">
+      <input class="input" formControlName="director" placeholder="Director name">
     </label>
     <div class="item__error" *ngIf="formErrors.director">
       {{formErrors.director}}
@@ -42,11 +42,12 @@
   </div>
   <div class="form__item">
     <label class="item__input">Description movie:
-      <textarea class="input" formControlName="description"></textarea>
+      <textarea class="input" formControlName="description" placeholder="Film description"></textarea>
     </label>
     <div class="item__error" *ngIf="formErrors.description">
       {{formErrors.description}}
     </div>
   </div>
   <input type="submit" value="Create" [disabled]="newMovieForm.invalid" class="form__submit">
+  <input type="reset" value="Reset" class="form__reset">
 </form>

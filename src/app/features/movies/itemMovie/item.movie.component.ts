@@ -4,7 +4,7 @@ import {
   Input,
   Output, EventEmitter
 } from '@angular/core';
-import { EventModel, MovieModel } from '../../../shared/interfase.models';
+import { EventModel, MovieModel } from '../../../shared/interface.models';
 
 @Component({
   selector: 'mv-item-movie',

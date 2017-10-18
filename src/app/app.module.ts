@@ -36,7 +36,7 @@ import {
   MoviesModule,
   NoContentModule,
   NewMovieModule } from './features';
-import { DataService } from './core';
+import { MoviesResourceService } from './core';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -85,7 +85,7 @@ type StoreType = {
   providers: [
     ENV_PROVIDERS,
     APP_PROVIDERS,
-    DataService
+    MoviesResourceService
   ]
 })
 export class AppModule {

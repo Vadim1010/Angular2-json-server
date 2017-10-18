@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NoContentComponent } from './no.content.component';
+import { NoContentComponent } from './no-content.component';
 
 @NgModule({
   imports: [

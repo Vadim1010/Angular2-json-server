@@ -5,19 +5,20 @@ import {
   OnDestroy
 } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { DataService } from '../../core';
+import { MoviesResourceService } from '../../core';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { InterfaceForm } from './interface-form';
 
 @Component({
   selector: 'mv-new-movie',
-  templateUrl: 'new.movie.component.html',
-  styleUrls: ['new.movie.component.scss'],
+  templateUrl: 'new-movie.component.html',
+  styleUrls: ['new-movie.component.scss'],
   encapsulation: ViewEncapsulation.Native
 })
 export class NewMovieComponent implements OnInit, OnDestroy {
   newMovieForm: FormGroup;
-  subscriptions: Subscription;
+  subscription: Subscription;
 
   formErrors = {
     title: '',
@@ -53,7 +54,7 @@ export class NewMovieComponent implements OnInit, OnDestroy {
   };
 
   constructor(private fb: FormBuilder,
-              private dataService: DataService,
+              private moviesResourceService: MoviesResourceService,
               private  router: Router) {
   }
 
@@ -90,41 +91,35 @@ export class NewMovieComponent implements OnInit, OnDestroy {
       stars: [0]
     });
 
-    this.newMovieForm.valueChanges.subscribe((data) => {
-      this.onValueChanges(data);
+    this.newMovieForm.valueChanges.subscribe(() => {
+      this.onValueChanges();
     });
 
-    this.onValueChanges();
   }
 
-  onValueChanges(data?: any): void {
-    if (!this.newMovieForm) {
-      return;
-    }
-
-    let from = this.newMovieForm;
-
+  onValueChanges(data?: InterfaceForm): void {
     for (let field of Object.keys(this.formErrors)) {
       this.formErrors[field] = '';
-      let control = from.get(field);
+      let control = this.newMovieForm.get(field);
+
       if (control && control.dirty && !control.valid) {
         let message = this.validationMassages[field];
-        for (let key of Object.keys(control.errors)) {
-          this.formErrors[field] = message[key];
-        }
+        let error = Object.keys(control.errors)[0];
+        this.formErrors[field] = message[error];
+
       }
     }
   }
 
   onSabmite(form: FormGroup): void {
-    this.subscriptions = this.dataService.addNewMovie(form.value).subscribe( () => {
+    this.subscription = this.moviesResourceService.addNewMovie(form.value).subscribe(() => {
       this.router.navigate(['/movies']);
     });
   }
 
   ngOnDestroy() {
-    if (this.subscriptions) {
-      this.subscriptions.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

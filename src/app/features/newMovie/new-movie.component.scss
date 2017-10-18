@@ -15,6 +15,9 @@
     background: #fff;
     cursor: pointer;
   }
+  &__reset{
+    @extend .form__submit;
+  }
 }
 
 .item {

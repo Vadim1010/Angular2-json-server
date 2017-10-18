@@ -1,6 +1,6 @@
 ﻿import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MovieDetailComponent } from './movie.detail.component';
+import { MovieDetailComponent } from './movie-detail.component';
 import { StarModule, InputModule, LikeModule } from '../../shared';
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { NewMovieComponent } from './new.movie.component';
+import { NewMovieComponent } from './new-movie.component';
 
 describe('New Movie Component', () => {
   let sut: NewMovieComponent;
@@ -7,6 +7,8 @@ describe('New Movie Component', () => {
   let observableMock: any;
   let fbMock: any;
   let response: any;
+  let formErrorsMock: any;
+  let newMovieFormMock: any;
 
   beforeEach(() => {
     routerMock = {
@@ -27,7 +29,21 @@ describe('New Movie Component', () => {
     response = Symbol('response');
 
     fbMock = {
-      group: jasmine.createSpy('group')
+      group: jasmine.createSpy('group'),
+      get: jasmine.createSpy('get').and.returnValues()
+    };
+
+    formErrorsMock = {
+      title: '',
+      posterUrl: '',
+      genres: '',
+      actors: '',
+      director: '',
+      description: ''
+    };
+
+    newMovieFormMock = {
+      get: jasmine.createSpy('get').and.returnValues('value')
     };
 
     sut = new NewMovieComponent(fbMock, dataServiceMock, routerMock);
@@ -41,13 +57,4 @@ describe('New Movie Component', () => {
     expect(sut.ngOnDestroy).toBeDefined();
   });
 
-  xdescribe('#ngOnInit', () => {
-    beforeEach(() => {
-      sut.ngOnInit();
-    });
-
-    it('should be buildForm', () => {
-      expect(sut.buildForm).toHaveBeenCalled();
-    });
-  });
 });
